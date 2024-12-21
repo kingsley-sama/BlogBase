@@ -28,7 +28,7 @@ except Exception as error:
     print("connecting to database failed")
     print(f"error: {error}")
     time.sleep(4)
-
+@app.get("/")
 def root():
     """entry to the file"""
     user_id = 1
@@ -38,7 +38,7 @@ def root():
         "version": "1.0.0",
         "endpoints": {
             "/users": "Get a list of users.",
-            "/users/{user_id}": "Get details of a specific user.",
+            f"/users/{user_id}": "Get details of a specific user.",
             "/docs": "API documentation (OpenAPI).",
             "/redoc": "Alternative API documentation."
         },
