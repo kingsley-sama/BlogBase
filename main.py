@@ -56,41 +56,6 @@ def create_user(user:BaseUser):
 
 """posts routes"""
 
-@app.post("/posts", status_code=status.HTTP_201_CREATED)
-def create_post(new_post: PostSchema):
-    cursor.execute("""INSERT INTO posts (title, content, published) VALUES(%s, %s, %s) RETURNING *""", (new_post.title, new_post.content, new_post.published))
-    my_post = cursor.fetchone()
-    conn.commit()
-    return{"this are the current posts": my_post}
-
-@app.get("/posts")
-def getpost():
-    """fetches all posts"""
-    cursor.execute("""SELECT * FROM posts""")
-    my_post = cursor.fetchall()
-    return{'data': my_post}
-
-@app.get("/posts/{id}")
-def get_post_by_id(id: int):
-    """gets a post by id"""
-    cursor.execute("""SELECT * FROM posts WHERE id = %s""", (str(id)))
-    my_post = cursor.fetchone()
-    return{'dat': my_post}
-
-@app.put("/posts/{id}")
-def update_post(id: int, post: PostSchema):
-    """gets a post by id"""
-    cursor.execute("""UPDATE posts SET title = %s, content = %s, published = %s WHERE id=%s RETURNING *""",(post.title, post.content, post.published, str(id)))
-    updated_post = cursor.fetchone()
-    conn.commit()
-    return{f"updated post whith id {id}": updated_post}
-
-@app.delete("/posts/{id}", status_code=status.HTTP_204_NO_CONTENT)
-def delete_post(id: int):
-    """deletes a post"""
-    cursor.execute("""DELETE * FROM posts WHERE id=%s RETURNING *""", (str(id),))
-
-    return f"post with id {id} deleted successfully"
 
 
 if __name__ == "__main__":
