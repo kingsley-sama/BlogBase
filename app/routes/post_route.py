@@ -1,8 +1,9 @@
 from fastapi import APIRouter, Depends, status
-from app.schmas.post_schema import PostSchema
+from app.schemas.post_schema import PostSchema
 from app.utils.database import get_db
-post_router = APIRouter()
 from sqlalchemy.orm import Session
+post_router = APIRouter()
+
 @post_router.post("/posts", status_code=status.HTTP_201_CREATED)
 def create_post(new_post: PostSchema, db: Session = Depends(get_db)):
 
@@ -27,4 +28,5 @@ def update_post(id: int, post: PostSchema):
 def delete_post(id: int):
     """deletes a post"""
     pass
+
 
