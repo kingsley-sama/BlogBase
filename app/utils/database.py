@@ -1,9 +1,8 @@
 from sqlalchemy.orm import Session
-import models
 
-from models import engine, SessionLocal
+from ..models import engine, SessionLocal, Base
 
-models.Base.metadata.create_all(bind=engine)
+Base.metadata.create_all(bind=engine)
 
 def get_db():
     """function to get the database connection using sqlalchemy"""
