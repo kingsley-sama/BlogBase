@@ -18,16 +18,6 @@ db_user = os.getenv('DB_USER')
 app = FastAPI()
 
 
-try:
-    conn = psycopg2.connect(host=db_host, database=db_name, 
-                        user=db_user, password=db_password,
-                         cursor_factory=RealDictCursor)
-    cursor = conn.cursor()
-    print('db connected successfully')
-except Exception as error:
-    print("connecting to database failed")
-    print(f"error: {error}")
-    time.sleep(4)
 @app.get("/")
 def root():
     """entry to the file"""
@@ -49,13 +39,6 @@ def root():
 """auth route"""
 
 """users route"""
-@app.post("/users")
-def create_user(user:BaseUser):
-    print(user.dict())
-    return{"this is the user gotten": user}
-
-"""posts routes"""
-
 
 
 if __name__ == "__main__":
