@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """defines the user model"""
-from sqlalchemy import Column, Integer, String, Boolean
+from sqlalchemy import Column, Integer, String
 from .base_model import Base
 
 class User(Base):

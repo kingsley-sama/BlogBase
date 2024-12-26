@@ -21,3 +21,15 @@ class ReturnUser(BaseModel):
     profile_img: str
 
 
+
+class Token(BaseModel):
+    """token schema"""
+    access_token: str
+    token_type: str
+
+class TokenData(BaseModel):
+    """token data schema"""
+    email: Optional[str] = None
+    user_type: Optional[str] = None
+
+    
